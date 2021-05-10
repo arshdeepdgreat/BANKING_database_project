@@ -19,7 +19,6 @@ include("templates/database_conn.php");
 
 if (isset($_GET['submit']))
 {
-  //echo ("hello");
   $pass=mysqli_real_escape_string($conn,$_GET['pass']);
   if ($pass!=$password)
   {

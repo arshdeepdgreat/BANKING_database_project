@@ -8,7 +8,7 @@ include "templates/database_conn.php";
    <footer class="section">
    	<div class ="container">
    	<h3 class="center black-text">for further details contact your branch manager: <?php echo htmlspecialchars($accounts5['branch_mgr_contact']); ?></h3>
-	<h6 class=" center black-text">DONE BY ARSHDEEP</h6>
+	<h6 class=" center black-text">Banking Project</h6>
 </div>
 </footer>
 </body>

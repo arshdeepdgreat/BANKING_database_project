@@ -25,8 +25,9 @@ if(is_null($accountinfo))
     }
 //print_r($accountinfo);
 mysqli_free_result($res);
-
-
+$date=date("Y-m-d");
+$sql6="UPDATE `issued_cheques` SET `status`=2 WHERE `date_of_claim`<='$date' and `status`=1";
+mysqli_query($conn,$sql6);
 $sql1="SELECT * from savings_transactions where account_number=$account order by timestamp_ desc";
 
 $result1= mysqli_query($conn,$sql1);
@@ -79,6 +80,16 @@ mysqli_close($conn);
 <h4 class='center'>TRANSACTION INFORMATION FOR <?php echo htmlspecialchars($accountinfo['account_name']);?>(<?php echo htmlspecialchars($accountinfo['s_account_number']); ?>)	</h4>
   <div class="center">
   <a href="savings_trans.php?userid=<?php echo($id);?>&password=<?php echo($password);?>&s_account_number=<?php echo ($account) ?>" class="btn brand z-depth-0">Make transaction</a>
+  <a href="savings_issue_check.php?userid=<?php echo($id);?>&password=<?php echo($password);?>&s_account_number=<?php echo ($account) ?>" class="btn brand z-depth-0">Issue Check</a>
+  <p>
+  <?php
+       include ('templates/database_conn.php');
+       $sql5="Select * from `issued_cheques` where `reciever_ac_no` ='$account' and `status`=2";
+       $res5=mysqli_query($conn,$sql5);
+       $count=mysqli_num_rows($res5);  
+  ?>
+  <a href="savings_claim_check.php?userid=<?php echo($id);?>&password=<?php echo($password);?>&s_account_number=<?php echo ($account) ?>" class="btn brand z-depth-0">Claim All Cheques:<?php echo $count;?></a>
+  </p>
 </div>
 </head>
 <body class="grey lighten-4" >

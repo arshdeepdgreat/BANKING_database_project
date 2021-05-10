@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2020 at 03:29 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- Generation Time: May 10, 2021 at 04:54 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `arshdeepbank`
+-- Database: `bank`
 --
 
 -- --------------------------------------------------------
@@ -196,6 +196,34 @@ INSERT INTO `fixed_deposits` (`fd_account_number`, `user_id`, `account_name`, `b
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `issued_cheques`
+--
+
+CREATE TABLE `issued_cheques` (
+  `cheque_id` int(10) NOT NULL,
+  `issue_ac_no` int(10) NOT NULL,
+  `reciever_ac_no` int(10) NOT NULL,
+  `amount` int(10) NOT NULL,
+  `date_of_claim` date NOT NULL,
+  `timestamp_of_issue` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `issued_cheques`
+--
+
+INSERT INTO `issued_cheques` (`cheque_id`, `issue_ac_no`, `reciever_ac_no`, `amount`, `date_of_claim`, `timestamp_of_issue`, `status`) VALUES
+(1, 1000000000, 1000000001, 500, '2021-05-09', '2021-05-10 11:32:55', 0),
+(3, 1000000001, 1000000000, 500, '2021-05-09', '2021-05-10 14:26:29', 0),
+(4, 1000000000, 1000000001, 1000, '2021-05-08', '2021-05-10 14:29:28', 0),
+(5, 1000000000, 1000000001, 500, '2021-05-09', '2021-05-10 14:32:21', 0),
+(6, 1000000001, 1000000000, 1500, '2021-05-09', '2021-05-10 14:45:52', 0),
+(7, 1000000000, 1000000001, 1000, '2021-05-09', '2021-05-10 14:53:12', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `loan_accounts`
 --
 
@@ -300,8 +328,8 @@ CREATE TABLE `savings_accounts` (
 --
 
 INSERT INTO `savings_accounts` (`userid`, `s_account_number`, `balance`, `created_on`, `branch_id`, `account_name`) VALUES
-(1000000048, 1000000000, 10000, '2020-10-01 12:09:09', 10000, 'savings account'),
-(1000000048, 1000000001, 5000, '2020-10-05 13:16:08', 10000, 'savings account upi'),
+(1000000048, 1000000000, 9000, '2020-10-01 12:09:09', 10000, 'savings account'),
+(1000000048, 1000000001, 6000, '2020-10-05 13:16:08', 10000, 'savings account upi'),
 (1000000049, 1000000002, 50000, '2020-10-05 13:16:08', 13453, 'savings debit_card'),
 (1000000050, 1000000003, 6398, '2020-10-05 13:47:26', 10000, 'my_savings'),
 (1000000051, 1000000004, 15000, '2020-10-05 13:48:35', 11000, 'savings_account'),
@@ -389,7 +417,19 @@ INSERT INTO `savings_transactions` (`trans_id`, `account_number`, `timestamp_`, 
 (66, 1000000003, '2020-10-27 05:10:04', 100, '100 deposit ', 7398),
 (67, 1000000003, '2020-10-27 07:06:43', -100, '100 bank transfer to 66774839 held by Arshdeep( IFSC: 789889  )', 7298),
 (68, 1000000003, '2020-10-27 07:08:11', -1000, '1000 money transfer to 242000001', 6298),
-(69, 1000000003, '2020-10-27 07:08:47', 100, '100 deposit ', 6398);
+(69, 1000000003, '2020-10-27 07:08:47', 100, '100 deposit ', 6398),
+(70, 1000000000, '2021-05-10 11:32:55', 500, 'Cheque transfer issue from 1000000000 to 1000000001', 9500),
+(71, 1000000001, '2021-05-10 14:23:37', 500, 'Cheque claimed from 1000000000', 5500),
+(72, 1000000001, '2021-05-10 14:26:29', 500, 'Cheque transfer issue from 1000000001 to 1000000000', 5000),
+(73, 1000000000, '2021-05-10 14:26:46', 500, 'Cheque claimed from 1000000001', 10000),
+(74, 1000000000, '2021-05-10 14:29:29', 1000, 'Cheque transfer issue from 1000000000 to 1000000001', 9000),
+(75, 1000000000, '2021-05-10 14:32:21', 500, 'Cheque transfer issue from 1000000000 to 1000000001', 8500),
+(76, 1000000001, '2021-05-10 14:32:32', 1000, 'Cheque claimed from 1000000000', 6000),
+(77, 1000000001, '2021-05-10 14:42:56', 500, 'Cheque claimed from 1000000000', 6500),
+(78, 1000000001, '2021-05-10 14:45:52', 1500, 'Cheque transfer issue from 1000000001 to 1000000000', 5000),
+(79, 1000000000, '2021-05-10 14:47:56', 1500, 'Cheque claimed from 1000000001', 10000),
+(80, 1000000000, '2021-05-10 14:53:12', 1000, 'Cheque transfer issue from 1000000000 to 1000000001', 9000),
+(81, 1000000001, '2021-05-10 14:53:48', 1000, 'Cheque claimed from 1000000000', 6000);
 
 --
 -- Indexes for dumped tables
@@ -433,6 +473,12 @@ ALTER TABLE `fixed_deposits`
   ADD PRIMARY KEY (`fd_account_number`),
   ADD KEY `fd_userid` (`user_id`),
   ADD KEY `fd_branch` (`branch_id`);
+
+--
+-- Indexes for table `issued_cheques`
+--
+ALTER TABLE `issued_cheques`
+  ADD PRIMARY KEY (`cheque_id`);
 
 --
 -- Indexes for table `loan_accounts`
@@ -505,6 +551,12 @@ ALTER TABLE `fixed_deposits`
   MODIFY `fd_account_number` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65300020;
 
 --
+-- AUTO_INCREMENT for table `issued_cheques`
+--
+ALTER TABLE `issued_cheques`
+  MODIFY `cheque_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `loan_accounts`
 --
 ALTER TABLE `loan_accounts`
@@ -532,7 +584,7 @@ ALTER TABLE `savings_accounts`
 -- AUTO_INCREMENT for table `savings_transactions`
 --
 ALTER TABLE `savings_transactions`
-  MODIFY `trans_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `trans_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- Constraints for dumped tables

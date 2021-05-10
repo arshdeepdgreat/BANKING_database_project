@@ -114,6 +114,6 @@ else{
 	</section>
 
  <footer class="section">
- 	<h6 class=" center black-text">DONE BY ARSHDEEP</h6>
+ 	<h6 class=" center black-text">Banking Project</h6>
 </footer>
 </body>
