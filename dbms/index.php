@@ -33,6 +33,9 @@ if(isset($_GET['userid']))
   $accounts5=mysqli_fetch_array($result5, MYSQLI_ASSOC);
   //print_r($accounts5);
 }
+else{
+  header("Location: login.php");
+}
 
 mysqli_free_result($result);
 mysqli_free_result($result3);

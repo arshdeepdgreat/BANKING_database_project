@@ -14,9 +14,6 @@ IF(empty($_GET['name'])){
 		else{
 			$errors['name']='';
 			$name=$_GET['name'];
-			if(!preg_match('/^[A-Z\s]+$/', $name)){
-				$errors['name']='enter a valid name in all caps';
-			}
 		}
 
 IF(empty($_GET['DOB'])){
@@ -36,9 +33,6 @@ IF(empty($_GET['email'])){
 		$errors['email']= 'email cant be empty';}
 		else{
 			$email=$_GET['email'];
-			if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-				$errors['email']='enter a valid email address';
-			}
 		}
 
 IF(empty($_GET['OTP_MAIL'])){

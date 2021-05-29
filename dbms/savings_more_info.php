@@ -90,6 +90,9 @@ mysqli_close($conn);
   ?>
   <a href="savings_claim_check.php?userid=<?php echo($id);?>&password=<?php echo($password);?>&s_account_number=<?php echo ($account) ?>" class="btn brand z-depth-0">Claim All Cheques:<?php echo $count;?></a>
   </p>
+  <p>
+      <a href="savings_view_all_cheques.php?userid=<?php echo($id);?>&password=<?php echo($password);?>&s_account_number=<?php echo ($account) ?>" class="btn brand z-depth-0">Digital Cheques for manual claim:<?php echo $count;?></a>
+  </p>
 </div>
 </head>
 <body class="grey lighten-4" >

@@ -1,5 +1,5 @@
 <?php 
- include('templates/database_conn.php');
+include('templates/database_conn.php');
 $k=false;
 include ('templates/check_errors_signup.php'); 
 
@@ -7,14 +7,14 @@ if (isset($_GET['submit']))
 {
 $branch=mysqli_real_escape_string($conn,$_GET['branch']);
 $sqlc="select * from branch where branch_id=$branch";
-//echo $sqlc;
 $resc=mysqli_query($conn,$sqlc);
 $arrayc=mysqli_fetch_array($resc,MYSQLI_ASSOC);
-if(is_null($arrayc))
-{
-  $errors['branch']='Branch ID invalid';
+	if(is_null($arrayc))
+	{
+ 	   $errors['branch']='Branch ID invalid';
+	}
 }
-}
+
 if ($confirmpassword!=$password)
 {
 	$errors['confirmpassword']= "password doesn't match please reenter ";
@@ -91,7 +91,7 @@ else{
       }
       else 
       {
-      echo 'Query error: '.mysqli_error($conn);
+         echo mysqli_error($conn);
       }
       ?> </h4>
     </div>
@@ -111,7 +111,7 @@ else{
 
 
   		<label style="color:grey;font-size: 18px;">email address</label>
-  		<input type="text" name="email" value=' <?php echo htmlspecialchars( $email) ?>'>
+  		<input type="email" name="email" value=' <?php echo htmlspecialchars($email) ?>'>
   		<div class="red-text"><?php echo htmlspecialchars( $errors['email']) ?></div>
 
 
@@ -137,7 +137,7 @@ else{
   		<input type="password" name="confirmpassword" value='<?php echo htmlspecialchars($confirmpassword)?>'>
   		<div class="red-text"><?php echo htmlspecialchars($errors['confirmpassword']) ?></div>
 
-      <label style="color:grey;font-size: 18px;">Branch ID</label>
+      <label style="color:grey;font-size: 18px;">Branch ID (consult branch manager)</label>
       <input type="number" name="branch" value='<?php echo htmlspecialchars($branch)?>'>
       <div class="red-text"><?php echo htmlspecialchars($errors['branch']); ?></div>
 
